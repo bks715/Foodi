@@ -8,12 +8,15 @@
 
 /* Begin PBXBuildFile section */
 		6A88676A2B8FEDB800518D4B /* FoodiApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A8867692B8FEDB800518D4B /* FoodiApp.swift */; };
-		6A88676C2B8FEDB800518D4B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A88676B2B8FEDB800518D4B /* ContentView.swift */; };
+		6A88676C2B8FEDB800518D4B /* RecipeListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A88676B2B8FEDB800518D4B /* RecipeListView.swift */; };
 		6A88676E2B8FEDB900518D4B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6A88676D2B8FEDB900518D4B /* Assets.xcassets */; };
 		6A8867712B8FEDB900518D4B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6A8867702B8FEDB900518D4B /* Preview Assets.xcassets */; };
 		6A88677B2B8FEDBA00518D4B /* FoodiTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A88677A2B8FEDBA00518D4B /* FoodiTests.swift */; };
 		6A8867852B8FEDBA00518D4B /* FoodiUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A8867842B8FEDBA00518D4B /* FoodiUITests.swift */; };
 		6A8867872B8FEDBA00518D4B /* FoodiUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A8867862B8FEDBA00518D4B /* FoodiUITestsLaunchTests.swift */; };
+		6A8867952B8FF0AC00518D4B /* AppsmithsEssentials in Frameworks */ = {isa = PBXBuildFile; productRef = 6A8867942B8FF0AC00518D4B /* AppsmithsEssentials */; };
+		6A8867982B8FF0CC00518D4B /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 6A8867972B8FF0CC00518D4B /* Alamofire */; };
+		6A88679B2B8FF0E600518D4B /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 6A88679A2B8FF0E600518D4B /* Kingfisher */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,7 +39,7 @@
 /* Begin PBXFileReference section */
 		6A8867662B8FEDB800518D4B /* Foodi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Foodi.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6A8867692B8FEDB800518D4B /* FoodiApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodiApp.swift; sourceTree = "<group>"; };
-		6A88676B2B8FEDB800518D4B /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		6A88676B2B8FEDB800518D4B /* RecipeListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeListView.swift; sourceTree = "<group>"; };
 		6A88676D2B8FEDB900518D4B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6A8867702B8FEDB900518D4B /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		6A8867762B8FEDBA00518D4B /* FoodiTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FoodiTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -51,6 +54,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6A88679B2B8FF0E600518D4B /* Kingfisher in Frameworks */,
+				6A8867952B8FF0AC00518D4B /* AppsmithsEssentials in Frameworks */,
+				6A8867982B8FF0CC00518D4B /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -95,7 +101,7 @@
 			isa = PBXGroup;
 			children = (
 				6A8867692B8FEDB800518D4B /* FoodiApp.swift */,
-				6A88676B2B8FEDB800518D4B /* ContentView.swift */,
+				6A88676B2B8FEDB800518D4B /* RecipeListView.swift */,
 				6A88676D2B8FEDB900518D4B /* Assets.xcassets */,
 				6A88676F2B8FEDB900518D4B /* Preview Content */,
 			);
@@ -143,6 +149,11 @@
 			dependencies = (
 			);
 			name = Foodi;
+			packageProductDependencies = (
+				6A8867942B8FF0AC00518D4B /* AppsmithsEssentials */,
+				6A8867972B8FF0CC00518D4B /* Alamofire */,
+				6A88679A2B8FF0E600518D4B /* Kingfisher */,
+			);
 			productName = Foodi;
 			productReference = 6A8867662B8FEDB800518D4B /* Foodi.app */;
 			productType = "com.apple.product-type.application";
@@ -215,6 +226,11 @@
 				Base,
 			);
 			mainGroup = 6A88675D2B8FEDB800518D4B;
+			packageReferences = (
+				6A8867932B8FF0AC00518D4B /* XCRemoteSwiftPackageReference "AppsmithsEssentials" */,
+				6A8867962B8FF0CC00518D4B /* XCRemoteSwiftPackageReference "Alamofire" */,
+				6A8867992B8FF0E600518D4B /* XCRemoteSwiftPackageReference "Kingfisher" */,
+			);
 			productRefGroup = 6A8867672B8FEDB800518D4B /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -257,7 +273,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6A88676C2B8FEDB800518D4B /* ContentView.swift in Sources */,
+				6A88676C2B8FEDB800518D4B /* RecipeListView.swift in Sources */,
 				6A88676A2B8FEDB800518D4B /* FoodiApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -347,7 +363,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -404,7 +420,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
@@ -430,6 +446,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -459,6 +476,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -588,6 +606,51 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		6A8867932B8FF0AC00518D4B /* XCRemoteSwiftPackageReference "AppsmithsEssentials" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/bks715/AppsmithsEssentials";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
+		6A8867962B8FF0CC00518D4B /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.8.1;
+			};
+		};
+		6A8867992B8FF0E600518D4B /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.11.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		6A8867942B8FF0AC00518D4B /* AppsmithsEssentials */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6A8867932B8FF0AC00518D4B /* XCRemoteSwiftPackageReference "AppsmithsEssentials" */;
+			productName = AppsmithsEssentials;
+		};
+		6A8867972B8FF0CC00518D4B /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6A8867962B8FF0CC00518D4B /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
+		6A88679A2B8FF0E600518D4B /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6A8867992B8FF0E600518D4B /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 6A88675E2B8FEDB800518D4B /* Project object */;
 }

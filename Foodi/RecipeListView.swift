@@ -7,6 +7,12 @@
 
 import SwiftUI
 
+
+///View model to power the recipe list.
+class RecipeListViewModel: NSObject, ObservableObject {
+    
+}
+
 struct RecipeListView: View {
     var body: some View {
         VStack {
