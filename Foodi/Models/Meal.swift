@@ -129,7 +129,14 @@ extension Meal: Codable {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         
         //Decode the values for the required properties
-        self.id = try container.decode(Int.self, forKey: .id)
+        
+        //The id value is a string in the JSON data so we need to decode it as a string and then convert it to an integer.
+        let idString = try container.decode(String.self, forKey: .id)
+        guard let id = Int(idString) else {
+            throw DecodingError.dataCorruptedError(forKey: .id, in: container, debugDescription: "Invalid ID value")
+        }
+        
+        self.id = id
         self.name = try container.decode(String.self, forKey: .name)
         
         //Decode the optional values for the remaining properties
@@ -137,7 +144,12 @@ extension Meal: Codable {
         self.area = try container.decodeIfPresent(String.self, forKey: .area)
         self.instructions = try container.decodeIfPresent(String.self, forKey: .instructions)
         self.thumbnailURL = try container.decodeIfPresent(String.self, forKey: .thumbnailURL)
-        self.tags = try container.decodeIfPresent([String].self, forKey: .tags)
+        
+        //The tags are an optional value returned as a comma separated string so we need to decode it as a string then split it into an array
+        if let tagString = try container.decodeIfPresent(String.self, forKey: .tags){
+            self.tags = tagString.components(separatedBy: ",")
+        }
+        
         self.youtubeURL = try container.decodeIfPresent(String.self, forKey: .youtubeURL)
         self.sourceURL = try container.decodeIfPresent(String.self, forKey: .sourceURL)
         
@@ -152,12 +164,14 @@ extension Meal: Codable {
             
             //Return the decoded value for ingredientName if it exists
             let ingredientName = try container.decodeIfPresent(String.self, forKey: ingredientNameKey)
-            
             //Return the decoded value for ingredientMeasurement if it exists
             let ingredientMeasurement = try container.decodeIfPresent(String.self, forKey: ingredientMeasurementKey)
             
             //Ensure that the ingredient name and measurement are not nil
             guard let ingredientName, let ingredientMeasurement else { return nil }
+            //Ensure that the ingredient name and measurement are not empty
+            guard !ingredientName.isEmpty, !ingredientMeasurement.isEmpty else { return nil }
+            
             return Ingredient(name: ingredientName, measurement: ingredientMeasurement)
         }
         
