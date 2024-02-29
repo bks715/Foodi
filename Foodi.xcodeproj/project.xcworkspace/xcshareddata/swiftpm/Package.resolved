@@ -1,5 +1,5 @@
 {
-  "originHash" : "9eaaab1dc8b488596d7998912e7f8a53c9dbe29ae68b1bd275c31290a505edbc",
+  "originHash" : "a3be624f4426ab85fc31eb4af4c86c70ad0bea74fabbf337db2e9e44f6700f8b",
   "pins" : [
     {
       "identity" : "alamofire",
@@ -8,15 +8,6 @@
       "state" : {
         "revision" : "3dc6a42c7727c49bf26508e29b0a0b35f9c7e1ad",
         "version" : "5.8.1"
-      }
-    },
-    {
-      "identity" : "appsmithsessentials",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/bks715/AppsmithsEssentials",
-      "state" : {
-        "branch" : "main",
-        "revision" : "3becdd3ca5cd24545001e6c8ec70cc5c2ca1ce50"
       }
     },
     {

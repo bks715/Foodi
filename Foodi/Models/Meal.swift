@@ -34,6 +34,12 @@ public struct Meal: Hashable, Identifiable {
     /// An optional array of ingredients required to prepare the meal.
     public var ingredients: [Ingredient]?
     
+    //MARK: Computed Properties -
+    /// A computed property that returns a boolean value indicating whether the meal is a placeholder.
+    public var isPlaceHolder: Bool {
+        return name == "Placeholder" && id == 5071998
+    }
+    
     //MARK: Initializers -
     /// A custom initializer for creating a `Meal` model with or without optional properties.
     /// - Parameters:
@@ -216,5 +222,9 @@ extension Meal: Codable {
         }
     }
     
-    
+}
+
+//MARK: - Meal Placeholder
+extension Meal {
+    public static let placeholder = Meal(id: 5071998, name: "Placeholder")
 }

@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import AppsmithsEssentials
 
 @main
 struct FoodiApp: App {
@@ -32,14 +31,14 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         return true
     }
     
-    ///This function initializes and registers the fonts included in my custom Appsmiths Package.
-    private func registerFonts(){
-        //Run in Do-Catch Block to handle errors
-        do{
-            try AppsmithsEssentials.registerFonts()
-        }catch{
-            //If the fonts don't register print the error
-            print(error)
+    ///This function initializes and registers the custom DMSans font i added.
+    private func registerFonts() {
+        guard let urls: [URL] = Bundle.main.urls(forResourcesWithExtension: "ttf", subdirectory: nil) else {
+            print(NSError(domain: "io.appsmiths.foodi", code: 404, userInfo: [NSLocalizedDescriptionKey: "No fonts were found in the bundle."]))
+            return
+        }
+        for fontName in urls {
+            CTFontManagerRegisterFontsForURL(fontName as CFURL, CTFontManagerScope.process, nil)
         }
     }
     
