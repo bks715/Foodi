@@ -43,24 +43,3 @@ struct RecipeListView: View {
 #Preview {
     RecipeListView()
 }
-
-struct MealCell: View{
-    
-    init(_ meal: Meal){
-        self.meal = meal
-    }
-    
-    let meal: Meal
-    
-    var body: some View{
-        HStack{
-            Text(meal.name)
-//                .body()
-                .redacted(reason: meal.isPlaceHolder ? .placeholder : [])
-        }
-        .overlay(
-            LinearGradient(stops: [.init(color: .white, location: 0.0), .init(color: .gray1, location: 0.1), .init(color: .white, location: 1.0)], startPoint: .bottomLeading, endPoint: .topTrailing)
-        )
-    }
-    
-}
