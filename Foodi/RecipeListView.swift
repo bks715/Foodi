@@ -6,15 +6,31 @@
 //
 
 import SwiftUI
+import Alamofire
 
 ///View model to power the recipe list.
-class RecipeListViewModel: NSObject, ObservableObject {
+public class RecipeListViewModel: NSObject, ObservableObject {
     
     //MARK:  - Properties -
+    ///MealDB API Client
+    let client = MealDBClient()
     
     //Initialize the meals array with 20 empty meals
     //This allows us to have a nice placeholder while waiting on API Data
-    @Published var meals = (0...20).map{ _ in Meal.placeholder }
+    @Published public var meals = (0...20).map{ _ in Meal.placeholder }
+    
+    
+    public func fetchDessertList() async {
+        do{
+            let meals = try await client.fetchMeals(forCategory: .dessert)
+            //Update the meals array with the meals from the API
+            await MainActor.run{
+                withAnimation{ self.meals = meals }
+            }
+        }catch{
+            print(error)
+        }
+    }
     
 }
 
@@ -35,6 +51,10 @@ struct RecipeListView: View {
                 }
             }
             .listStyle(.plain)
+        }
+        .task{
+            //Fetch the list of desserts
+            await viewModel.fetchDessertList()
         }
     }
     

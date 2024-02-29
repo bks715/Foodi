@@ -28,5 +28,5 @@ struct MealCell: View{
 }
 
 #Preview {
-    MealCell()
+    MealCell(.placeholder)
 }
