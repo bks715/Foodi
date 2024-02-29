@@ -102,6 +102,7 @@
 			children = (
 				6A8867692B8FEDB800518D4B /* FoodiApp.swift */,
 				6A88676B2B8FEDB800518D4B /* RecipeListView.swift */,
+				6A88679C2B90EEB300518D4B /* Models */,
 				6A88676D2B8FEDB900518D4B /* Assets.xcassets */,
 				6A88676F2B8FEDB900518D4B /* Preview Content */,
 			);
@@ -131,6 +132,13 @@
 				6A8867862B8FEDBA00518D4B /* FoodiUITestsLaunchTests.swift */,
 			);
 			path = FoodiUITests;
+			sourceTree = "<group>";
+		};
+		6A88679C2B90EEB300518D4B /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
