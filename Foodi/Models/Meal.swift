@@ -7,32 +7,32 @@
 
 import Foundation
 
-struct Meal: Hashable, Identifiable {
+public struct Meal: Hashable, Identifiable {
     
     //MARK: Properties -
     //Immutable Properties that are required to be initialized at the time of creation -
     /// The unique identifier for the meal.
-    let id: Int
+    public let id: Int
     /// The name of the meal (e.g. "Apple Frangipan Tart").
-    let name: String
+    public let name: String
     
     //Mutable Properties -
     /// The category of the meal (e.g. "Dessert").
-    var category: String?
+    public var category: String?
     /// The area or region the meal originates from (e.g. "British" or "Italian").
-    var area: String?
+    public var area: String?
     /// The instructions for preparing the meal. - Optional
-    var instructions: String?
+    public var instructions: String?
     /// An optional URL for the thumbnail image of the meal. - Optional
-    var thumbnailURL: String?
+    public var thumbnailURL: String?
     /// An optional array of  tags (Strings) associated with the meal (e.g. "Tart", "Baking", "Fruity").
-    var tags: [String]?
+    public var tags: [String]?
     /// An optional URL for a YouTube video showing how to prepare the meal.
-    var youtubeURL: String?
+    public var youtubeURL: String?
     /// An optional URL for the source of the meal (e.g. "https://www.bbcgoodfood.com/recipes/apple-frangipan-tart").
-    var sourceURL: String?
+    public var sourceURL: String?
     /// An optional array of ingredients required to prepare the meal.
-    var ingredients: [Ingredient]?
+    public var ingredients: [Ingredient]?
     
     //MARK: Initializers -
     /// A custom initializer for creating a `Meal` model with or without optional properties.
@@ -47,7 +47,7 @@ struct Meal: Hashable, Identifiable {
     /// - youtubeURL: The URL for a YouTube video showing how to prepare the meal.
     /// - sourceURL: The URL for the source of the meal.
     /// - ingredients: An array of ingredients required to prepare the meal.
-    init(id: Int, name: String, category: String? = nil, area: String? = nil, instructions: String? = nil, thumbnailURL: String? = nil, tags: [String]? = nil, youtubeURL: String? = nil, sourceURL: String? = nil, ingredients: [Ingredient]? = nil) {
+    public init(id: Int, name: String, category: String? = nil, area: String? = nil, instructions: String? = nil, thumbnailURL: String? = nil, tags: [String]? = nil, youtubeURL: String? = nil, sourceURL: String? = nil, ingredients: [Ingredient]? = nil) {
         self.id = id
         self.name = name
         self.category = category
@@ -67,7 +67,7 @@ extension Meal: Codable {
     
     //Coding Keys - Enum that conforms to CodingKey Protocol
     //Needed to map the properties of the Meal model to the keys in the JSON data.
-    enum CodingKeys: String, CodingKey {
+    private enum CodingKeys: String, CodingKey {
         case id = "idMeal"
         case name = "strMeal"
         case category = "strCategory"
@@ -124,7 +124,7 @@ extension Meal: Codable {
     
     //Custom Initializer to decode the JSON data into the Meal model
     /// A custom initializer for creating a `Meal` model from JSON data recived from the MealsDB API.
-    init(from decoder: any Decoder) throws {
+    public init(from decoder: any Decoder) throws {
         //Create a container to hold the keys and values from the JSON data
         let container = try decoder.container(keyedBy: CodingKeys.self)
         
@@ -167,7 +167,7 @@ extension Meal: Codable {
     
     //Encode the Meal model to JSON data
     //Although we don't expect to send the Meal model to a server, we will implement the encode method for completeness.
-    func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         
         //Encode the values for the required properties

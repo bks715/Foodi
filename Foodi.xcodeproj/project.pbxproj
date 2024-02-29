@@ -19,6 +19,11 @@
 		6A88679B2B8FF0E600518D4B /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 6A88679A2B8FF0E600518D4B /* Kingfisher */; };
 		6A88679E2B90F11000518D4B /* Meal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A88679D2B90F11000518D4B /* Meal.swift */; };
 		6A8867A02B90F28600518D4B /* Ingredient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A88679F2B90F28600518D4B /* Ingredient.swift */; };
+		6A8867A82B91016000518D4B /* AppsmithsEssentials in Frameworks */ = {isa = PBXBuildFile; productRef = 6A8867A72B91016000518D4B /* AppsmithsEssentials */; };
+		6A8867AA2B91016300518D4B /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 6A8867A92B91016300518D4B /* Alamofire */; };
+		6A8867AC2B91016700518D4B /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 6A8867AB2B91016700518D4B /* Kingfisher */; };
+		6A8867AD2B9102C600518D4B /* MealTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A8867A12B90FD0F00518D4B /* MealTests.swift */; };
+		6A8867AE2B9102F600518D4B /* IngredientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A8867A42B90FE4300518D4B /* IngredientTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +56,8 @@
 		6A8867862B8FEDBA00518D4B /* FoodiUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodiUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		6A88679D2B90F11000518D4B /* Meal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Meal.swift; sourceTree = "<group>"; };
 		6A88679F2B90F28600518D4B /* Ingredient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ingredient.swift; sourceTree = "<group>"; };
+		6A8867A12B90FD0F00518D4B /* MealTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealTests.swift; sourceTree = "<group>"; };
+		6A8867A42B90FE4300518D4B /* IngredientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,6 +75,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6A8867AC2B91016700518D4B /* Kingfisher in Frameworks */,
+				6A8867A82B91016000518D4B /* AppsmithsEssentials in Frameworks */,
+				6A8867AA2B91016300518D4B /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -88,6 +98,7 @@
 				6A8867792B8FEDBA00518D4B /* FoodiTests */,
 				6A8867832B8FEDBA00518D4B /* FoodiUITests */,
 				6A8867672B8FEDB800518D4B /* Products */,
+				6A8867A62B91015F00518D4B /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -125,6 +136,7 @@
 			isa = PBXGroup;
 			children = (
 				6A88677A2B8FEDBA00518D4B /* FoodiTests.swift */,
+				6A8867A32B90FD1400518D4B /* ModelTests */,
 			);
 			path = FoodiTests;
 			sourceTree = "<group>";
@@ -145,6 +157,22 @@
 				6A88679F2B90F28600518D4B /* Ingredient.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		6A8867A32B90FD1400518D4B /* ModelTests */ = {
+			isa = PBXGroup;
+			children = (
+				6A8867A12B90FD0F00518D4B /* MealTests.swift */,
+				6A8867A42B90FE4300518D4B /* IngredientTests.swift */,
+			);
+			path = ModelTests;
+			sourceTree = "<group>";
+		};
+		6A8867A62B91015F00518D4B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -186,6 +214,11 @@
 				6A8867782B8FEDBA00518D4B /* PBXTargetDependency */,
 			);
 			name = FoodiTests;
+			packageProductDependencies = (
+				6A8867A72B91016000518D4B /* AppsmithsEssentials */,
+				6A8867A92B91016300518D4B /* Alamofire */,
+				6A8867AB2B91016700518D4B /* Kingfisher */,
+			);
 			productName = FoodiTests;
 			productReference = 6A8867762B8FEDBA00518D4B /* FoodiTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
@@ -298,6 +331,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6A8867AE2B9102F600518D4B /* IngredientTests.swift in Sources */,
+				6A8867AD2B9102C600518D4B /* MealTests.swift in Sources */,
 				6A88677B2B8FEDBA00518D4B /* FoodiTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -515,7 +550,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = EARS9JE9NE;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = io.appsmiths.FoodiTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -535,7 +570,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = EARS9JE9NE;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = io.appsmiths.FoodiTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -662,6 +697,21 @@
 			productName = Alamofire;
 		};
 		6A88679A2B8FF0E600518D4B /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6A8867992B8FF0E600518D4B /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
+		};
+		6A8867A72B91016000518D4B /* AppsmithsEssentials */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6A8867932B8FF0AC00518D4B /* XCRemoteSwiftPackageReference "AppsmithsEssentials" */;
+			productName = AppsmithsEssentials;
+		};
+		6A8867A92B91016300518D4B /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6A8867962B8FF0CC00518D4B /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
+		6A8867AB2B91016700518D4B /* Kingfisher */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 6A8867992B8FF0E600518D4B /* XCRemoteSwiftPackageReference "Kingfisher" */;
 			productName = Kingfisher;
