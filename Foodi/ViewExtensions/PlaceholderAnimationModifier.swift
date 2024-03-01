@@ -44,7 +44,14 @@ fileprivate struct LoadingViewViewModifier: ViewModifier {
 }
 
 extension View{
+    
+    /// Apply a placeholder animation to the view
+    /// - Parameters:
+    ///  - isLoading: Whether or not the view is loading
+    ///  - loopDuration: The duration of the animation loop
+    ///  - Returns: A view with a placeholder animation
     func placeholderAnimation(isLoading: Bool, loopDuration: TimeInterval = 1.0) -> some View{
         self.modifier(LoadingViewViewModifier(isLoading: isLoading, loopDuration: loopDuration))
     }
+    
 }

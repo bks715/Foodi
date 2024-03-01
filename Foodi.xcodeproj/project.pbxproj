@@ -27,6 +27,7 @@
 		6A7034122B91208A00C35032 /* MealDBClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A7034112B91208A00C35032 /* MealDBClient.swift */; };
 		6A7034142B912ED300C35032 /* MealListResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A7034132B912ED300C35032 /* MealListResponse.swift */; };
 		6A7034162B9131A800C35032 /* MealDBClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A7034152B9131A800C35032 /* MealDBClientTests.swift */; };
+		6A7034182B92518300C35032 /* SizePreferenceKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A7034172B92518300C35032 /* SizePreferenceKey.swift */; };
 		6A88676A2B8FEDB800518D4B /* FoodiApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A8867692B8FEDB800518D4B /* FoodiApp.swift */; };
 		6A88676C2B8FEDB800518D4B /* RecipeListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A88676B2B8FEDB800518D4B /* RecipeListView.swift */; };
 		6A88676E2B8FEDB900518D4B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6A88676D2B8FEDB900518D4B /* Assets.xcassets */; };
@@ -38,12 +39,8 @@
 		6A88679B2B8FF0E600518D4B /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 6A88679A2B8FF0E600518D4B /* Kingfisher */; };
 		6A88679E2B90F11000518D4B /* Meal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A88679D2B90F11000518D4B /* Meal.swift */; };
 		6A8867A02B90F28600518D4B /* Ingredient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A88679F2B90F28600518D4B /* Ingredient.swift */; };
-		6A8867AA2B91016300518D4B /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 6A8867A92B91016300518D4B /* Alamofire */; };
-		6A8867AC2B91016700518D4B /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 6A8867AB2B91016700518D4B /* Kingfisher */; };
 		6A8867AD2B9102C600518D4B /* MealTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A8867A12B90FD0F00518D4B /* MealTests.swift */; };
 		6A8867AE2B9102F600518D4B /* IngredientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A8867A42B90FE4300518D4B /* IngredientTests.swift */; };
-		6A8867B52B9113A200518D4B /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 6A8867B42B9113A200518D4B /* Alamofire */; };
-		6A8867B72B9113A600518D4B /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 6A8867B62B9113A600518D4B /* Kingfisher */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -78,6 +75,7 @@
 		6A7034112B91208A00C35032 /* MealDBClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealDBClient.swift; sourceTree = "<group>"; };
 		6A7034132B912ED300C35032 /* MealListResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealListResponse.swift; sourceTree = "<group>"; };
 		6A7034152B9131A800C35032 /* MealDBClientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealDBClientTests.swift; sourceTree = "<group>"; };
+		6A7034172B92518300C35032 /* SizePreferenceKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SizePreferenceKey.swift; sourceTree = "<group>"; };
 		6A8867662B8FEDB800518D4B /* Foodi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Foodi.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6A8867692B8FEDB800518D4B /* FoodiApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodiApp.swift; sourceTree = "<group>"; };
 		6A88676B2B8FEDB800518D4B /* RecipeListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeListView.swift; sourceTree = "<group>"; };
@@ -108,8 +106,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6A8867AC2B91016700518D4B /* Kingfisher in Frameworks */,
-				6A8867AA2B91016300518D4B /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -117,8 +113,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6A8867B72B9113A600518D4B /* Kingfisher in Frameworks */,
-				6A8867B52B9113A200518D4B /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -145,6 +139,7 @@
 				6A50E7592B91169600D93809 /* CornerRadius.swift */,
 				6A50E75E2B91181600D93809 /* ColorExtension.swift */,
 				6A70340C2B911FA900C35032 /* PlaceholderAnimationModifier.swift */,
+				6A7034172B92518300C35032 /* SizePreferenceKey.swift */,
 			);
 			path = ViewExtensions;
 			sourceTree = "<group>";
@@ -206,8 +201,8 @@
 			isa = PBXGroup;
 			children = (
 				6A88677A2B8FEDBA00518D4B /* FoodiTests.swift */,
-				6A8867A32B90FD1400518D4B /* ModelTests */,
 				6A7034152B9131A800C35032 /* MealDBClientTests.swift */,
+				6A8867A32B90FD1400518D4B /* ModelTests */,
 			);
 			path = FoodiTests;
 			sourceTree = "<group>";
@@ -286,8 +281,6 @@
 			);
 			name = FoodiTests;
 			packageProductDependencies = (
-				6A8867A92B91016300518D4B /* Alamofire */,
-				6A8867AB2B91016700518D4B /* Kingfisher */,
 			);
 			productName = FoodiTests;
 			productReference = 6A8867762B8FEDBA00518D4B /* FoodiTests.xctest */;
@@ -308,8 +301,6 @@
 			);
 			name = FoodiUITests;
 			packageProductDependencies = (
-				6A8867B42B9113A200518D4B /* Alamofire */,
-				6A8867B62B9113A600518D4B /* Kingfisher */,
 			);
 			productName = FoodiUITests;
 			productReference = 6A8867802B8FEDBA00518D4B /* FoodiUITests.xctest */;
@@ -410,6 +401,7 @@
 				6A50E75A2B91169600D93809 /* CornerRadius.swift in Sources */,
 				6A7034142B912ED300C35032 /* MealListResponse.swift in Sources */,
 				6A70340F2B911FF700C35032 /* MealCell.swift in Sources */,
+				6A7034182B92518300C35032 /* SizePreferenceKey.swift in Sources */,
 				6A70340D2B911FA900C35032 /* PlaceholderAnimationModifier.swift in Sources */,
 				6A7034122B91208A00C35032 /* MealDBClient.swift in Sources */,
 				6A88676C2B8FEDB800518D4B /* RecipeListView.swift in Sources */,
@@ -777,26 +769,6 @@
 			productName = Alamofire;
 		};
 		6A88679A2B8FF0E600518D4B /* Kingfisher */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 6A8867992B8FF0E600518D4B /* XCRemoteSwiftPackageReference "Kingfisher" */;
-			productName = Kingfisher;
-		};
-		6A8867A92B91016300518D4B /* Alamofire */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 6A8867962B8FF0CC00518D4B /* XCRemoteSwiftPackageReference "Alamofire" */;
-			productName = Alamofire;
-		};
-		6A8867AB2B91016700518D4B /* Kingfisher */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 6A8867992B8FF0E600518D4B /* XCRemoteSwiftPackageReference "Kingfisher" */;
-			productName = Kingfisher;
-		};
-		6A8867B42B9113A200518D4B /* Alamofire */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 6A8867962B8FF0CC00518D4B /* XCRemoteSwiftPackageReference "Alamofire" */;
-			productName = Alamofire;
-		};
-		6A8867B62B9113A600518D4B /* Kingfisher */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 6A8867992B8FF0E600518D4B /* XCRemoteSwiftPackageReference "Kingfisher" */;
 			productName = Kingfisher;
