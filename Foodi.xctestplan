@@ -23,15 +23,6 @@
         "identifier" : "6A8867752B8FEDBA00518D4B",
         "name" : "FoodiTests"
       }
-    },
-    {
-      "enabled" : false,
-      "parallelizable" : true,
-      "target" : {
-        "containerPath" : "container:Foodi.xcodeproj",
-        "identifier" : "6A88677F2B8FEDBA00518D4B",
-        "name" : "FoodiUITests"
-      }
     }
   ],
   "version" : 1

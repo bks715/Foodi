@@ -22,7 +22,11 @@ struct SlidingPickerView: View {
     var body: some View {
         HStack{
             ForEach(values, id: \.self){ value in
-                Button(value.capitalized, action: { withAnimation(.bouncy){ selection = value} })
+                Button(value.capitalized, action: { 
+                    withAnimation(.bouncy){ selection = value}
+                    //Add a Little Haptic Feedback When the User Selects a New Value
+                    UIImpactFeedbackGenerator(style: .light).impactOccurred()
+                })
                     .anchorPreference(key: SelectorPreferenceKey.self, value: .bounds, transform: { anchor in
                         return [value:anchor]
                     })

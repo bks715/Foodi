@@ -11,6 +11,7 @@ struct SearchBar: View {
     
     ///The text that is being searched for
     @Binding var text: String
+    @FocusState private var isFocused: Bool
     
     var body: some View {
         //MARK: Search Bar -
@@ -18,9 +19,16 @@ struct SearchBar: View {
             Image(systemName: "magnifyingglass")
                 .font(.headline)
                 .foregroundStyle(Color.tertiaryText)
+                .onTapGesture {
+                    //Incase the user taps the search icon, focus the search bar
+                    withAnimation(.bouncy){
+                        isFocused = true
+                    }
+                }
             
             TextField("Find Your Favorite Dessert", text: $text)
                 .headline()
+                .focused($isFocused)
                 
             
             //A Button that makes it easy to clear the search text

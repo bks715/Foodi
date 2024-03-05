@@ -20,6 +20,7 @@ struct MealCell: View{
     let meal: Meal
     
     var body: some View{
+        //Layout as a Cell for compact View Classes eg. iPhone
         if sizeClass == .compact{
             HStack(alignment: .center, spacing: 15){
                 ///Load the image from the URL if available
@@ -53,6 +54,7 @@ struct MealCell: View{
                 
             }
         } else {
+            //Layout as a Grid Square for Larger Horizontal View Class eg. Full Screen on iPad
             HStack(){
                 Spacer()
                 
