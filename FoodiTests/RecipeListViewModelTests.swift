@@ -36,9 +36,13 @@ final class RecipeListViewModelTests: XCTestCase {
         await viewModel.fetchDessertList()
         //Test that searching for a meal that exists works
         viewModel.searchText = "Apple"
-        XCTAssertTrue(viewModel.displayedMeals.allSatisfy({ $0.name.contains("apple") }))
+        //Search
+        viewModel.filterBySearch()
+        XCTAssertTrue(viewModel.displayedMeals.allSatisfy({ $0.name.lowercased().contains("apple") }))
         //Test that searching for a meal that doesn't exist works
         viewModel.searchText = "1234567890"
+        //Search
+        viewModel.filterBySearch()
         XCTAssertTrue(viewModel.displayedMeals.isEmpty)
     }
 

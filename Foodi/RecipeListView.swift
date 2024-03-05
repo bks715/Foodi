@@ -28,7 +28,7 @@ public class RecipeListViewModel: NSObject, ObservableObject {
     override init(){
         //Initialize the meals array with 20 empty meals
         //This allows us to have a nice placeholder while waiting on API Data
-        let meals = (0...50).map{ Meal(id: $0, name: Meal.placeholder.name) }
+        let meals = (0..<50).map{ Meal(id: $0, name: Meal.placeholder.name) }
         self.meals = meals
         self.displayedMeals = meals
     }
