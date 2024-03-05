@@ -37,7 +37,28 @@ public struct Meal: Hashable, Identifiable {
     //MARK: Computed Properties -
     /// A computed property that returns a boolean value indicating whether the meal is a placeholder.
     public var isPlaceHolder: Bool {
-        return name == "Placeholder" && id == 5071998
+        return name == "Placeholder"
+    }
+    
+    ///String used to search for the meal including it's name, tags, and ingredient names
+    public var searchQuery: String {
+        var query = name
+        if let tags = tags {
+            query += " " + tags.joined(separator: " ")
+        }
+        if let ingredients = ingredients {
+            query += " " + ingredients.map({ $0.name }).joined(separator: " ")
+        }
+        return query
+    }
+    
+    public var isFavorite: Bool {
+        get{
+            return UserDefaults.standard.bool(forKey: "\(id)")
+        }
+        set{
+            UserDefaults.standard.set(newValue, forKey: "\(id)")
+        }
     }
     
     //MARK: Initializers -
@@ -162,11 +183,11 @@ extension Meal: Codable {
         //Decode the ingredients - The API returns up to 20 ingredient names and 20 ingredient unit values so we need to decode each of those
         //We will use a sequence of numbers to loop through the keys and decode the name and measurement for each ingredient if it exists.
         //We use compactMap to filter out nil values and returning an array of Ingredient objects.
-        let ingredients: [Ingredient] = try (1...20).compactMap { number -> Ingredient? in
-            
+        var ingredients = Set<Ingredient>()
+        try (1...20).forEach { number in
             //Get the coding key for the ingredient name and measurement
             guard let ingredientNameKey = CodingKeys(rawValue: "strIngredient\(number)"),
-                  let ingredientMeasurementKey = CodingKeys(rawValue: "strMeasure\(number)") else { return nil }
+                  let ingredientMeasurementKey = CodingKeys(rawValue: "strMeasure\(number)") else { return }
             
             //Return the decoded value for ingredientName if it exists
             let ingredientName = try container.decodeIfPresent(String.self, forKey: ingredientNameKey)
@@ -174,15 +195,15 @@ extension Meal: Codable {
             let ingredientMeasurement = try container.decodeIfPresent(String.self, forKey: ingredientMeasurementKey)
             
             //Ensure that the ingredient name and measurement are not nil
-            guard let ingredientName, let ingredientMeasurement else { return nil }
+            guard let ingredientName, let ingredientMeasurement else { return }
             //Ensure that the ingredient name and measurement are not empty
-            guard !ingredientName.isEmpty, !ingredientMeasurement.isEmpty else { return nil }
+            guard !ingredientName.isEmpty, !ingredientMeasurement.isEmpty else { return }
             
-            return Ingredient(name: ingredientName, measurement: ingredientMeasurement)
+            ingredients.insert(Ingredient(name: ingredientName, measurement: ingredientMeasurement))
         }
         
         //Set the ingredients property to the array of Ingredient objects
-        self.ingredients = ingredients
+        self.ingredients = ingredients.sorted(by: { $0.name < $1.name })
     }
     
     //Encode the Meal model to JSON data

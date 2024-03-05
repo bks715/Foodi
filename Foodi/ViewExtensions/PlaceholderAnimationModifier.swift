@@ -22,8 +22,12 @@ fileprivate struct LoadingViewViewModifier: ViewModifier {
         if isLoading{
             content
                 .mask(
-                    TimelineView(.animation){ context in
-                        LinearGradient(stops: [.init(color: .white, location: animationPercentage(-0.4)), .init(color: .clear, location: animationPercentage(-0.1)), .init(color: .white, location: animationPercentage(0.1))], startPoint: .bottomLeading, endPoint: .topTrailing)
+                    GeometryReader{ geo in
+                        TimelineView(.animation){ context in
+                            LinearGradient(stops: [.init(color: .white.opacity(0.33), location: 0.4), .init(color: .lilac, location: 0.5), .init(color: .white.opacity(0.33), location: 0.6)], startPoint: .bottomLeading, endPoint: .topTrailing)
+                                .scaleEffect(3)
+                                .offset(x: animationOffset(width: geo.size.width), y: -animationOffset(width: geo.size.height))
+                        }
                     }
                 )
         }else{
@@ -31,14 +35,11 @@ fileprivate struct LoadingViewViewModifier: ViewModifier {
         }
     }
     
-    ///Get the percentage of the animation loop that has been completed by taking the current time and dividing it by the loop duration
-    func animationPercentage(_ percentOffset: CGFloat = 0.0) -> CGFloat {
+    
+    func animationOffset(width: CGFloat) -> CGFloat{
         let time = Date().timeIntervalSince(animationStartTime)
         let percentage = CGFloat(fmod(time, loopDuration)/loopDuration)*1.5
-        
-        let offsetPercentage = percentage + percentOffset
-        //Rap the overflow
-        return offsetPercentage
+        return (percentage-0.7)*width
     }
     
 }
@@ -54,4 +55,8 @@ extension View{
         self.modifier(LoadingViewViewModifier(isLoading: isLoading, loopDuration: loopDuration))
     }
     
+}
+
+#Preview{
+    RecipeListView()
 }

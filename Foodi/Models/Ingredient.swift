@@ -25,7 +25,7 @@ public struct Ingredient: Codable, Hashable, Identifiable {
     ///  - measurement: The measurement unit for the ingredient.
     public init(name: String, measurement: String) {
         // Create a unique identifier for the ingredient by converting the name to lowercase and replacing spaces with underscores.
-        self.id = name.lowercased().replacingOccurrences(of: " ", with: "_")
+        self.id = (name + measurement).lowercased().replacingOccurrences(of: " ", with: "_")
         // Capitalize the first letter of each word in the name and replace underscores with spaces.
         self.name = name.replacingOccurrences(of: "_", with: " ").capitalized(with: .current)
         self.measurement = measurement
