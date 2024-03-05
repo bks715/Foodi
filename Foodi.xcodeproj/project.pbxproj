@@ -80,6 +80,7 @@
 		6A7034172B92518300C35032 /* SizePreferenceKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SizePreferenceKey.swift; sourceTree = "<group>"; };
 		6A7034192B925AE400C35032 /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
 		6A70341B2B92731700C35032 /* MealDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealDetailView.swift; sourceTree = "<group>"; };
+		6A70341D2B97A77F00C35032 /* Foodi.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = Foodi.xctestplan; sourceTree = "<group>"; };
 		6A8867662B8FEDB800518D4B /* Foodi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Foodi.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6A8867692B8FEDB800518D4B /* FoodiApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodiApp.swift; sourceTree = "<group>"; };
 		6A88676B2B8FEDB800518D4B /* RecipeListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeListView.swift; sourceTree = "<group>"; };
@@ -161,6 +162,7 @@
 		6A88675D2B8FEDB800518D4B = {
 			isa = PBXGroup;
 			children = (
+				6A70341D2B97A77F00C35032 /* Foodi.xctestplan */,
 				6A8867682B8FEDB800518D4B /* Foodi */,
 				6A8867792B8FEDBA00518D4B /* FoodiTests */,
 				6A8867832B8FEDBA00518D4B /* FoodiUITests */,

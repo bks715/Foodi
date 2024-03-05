@@ -1,0 +1,38 @@
+{
+  "configurations" : [
+    {
+      "id" : "A090AB61-8512-4485-A4FC-1BF49C7D375E",
+      "name" : "Test Scheme Action",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "targetForVariableExpansion" : {
+      "containerPath" : "container:Foodi.xcodeproj",
+      "identifier" : "6A8867652B8FEDB800518D4B",
+      "name" : "Foodi"
+    }
+  },
+  "testTargets" : [
+    {
+      "parallelizable" : true,
+      "target" : {
+        "containerPath" : "container:Foodi.xcodeproj",
+        "identifier" : "6A8867752B8FEDBA00518D4B",
+        "name" : "FoodiTests"
+      }
+    },
+    {
+      "enabled" : false,
+      "parallelizable" : true,
+      "target" : {
+        "containerPath" : "container:Foodi.xcodeproj",
+        "identifier" : "6A88677F2B8FEDBA00518D4B",
+        "name" : "FoodiUITests"
+      }
+    }
+  ],
+  "version" : 1
+}

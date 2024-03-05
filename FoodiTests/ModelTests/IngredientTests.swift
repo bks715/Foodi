@@ -21,7 +21,7 @@ final class IngredientTests: XCTestCase {
     //Test proper initialization of the Ingredient model
     func testIngredientInit() {
         let ingredient = Ingredient(name: "Baking Flour", measurement: "113 grams / 0.5 cups")
-        XCTAssertEqual(ingredient.id, "baking_flour")
+        XCTAssertEqual(ingredient.id, "baking_flour113_grams_/_0.5_cups")
         XCTAssertEqual(ingredient.name, "Baking Flour")
         XCTAssertEqual(ingredient.measurement, "113 grams / 0.5 cups")
     }
@@ -33,9 +33,9 @@ final class IngredientTests: XCTestCase {
         let butter = Ingredient(name: "BUTTER", measurement: "300 grams / 1 stick")
         let milk = Ingredient(name: "DaIRy_MiLk .", measurement: "240 grams / 1 cup")
         
-        XCTAssertEqual(bakingFlour.id, "baking_flour")
-        XCTAssertEqual(butter.id, "butter")
-        XCTAssertEqual(milk.id, "dairy_milk_.")
+        XCTAssertEqual(bakingFlour.id, "baking_flour113_grams_/_0.5_cups")
+        XCTAssertEqual(butter.id, "butter300_grams_/_1_stick")
+        XCTAssertEqual(milk.id, "dairy_milk_.240_grams_/_1_cup")
     }
     
     //Test that the ingredient Name is properly formatted
@@ -72,23 +72,27 @@ final class IngredientTests: XCTestCase {
     func testIngredientHashable(){
         let ingredient = Ingredient(name: "Baking Flour", measurement: "113 grams / 0.5 cups")
         let ingredient2 = Ingredient(name: "Baking Flour", measurement: "113 grams / 0.5 cups")
+        let ingredient3 = Ingredient(name: "Baking Flour", measurement: "1 metric ton")
         
         //The hash value of two equal ingredients should be the same
         XCTAssertEqual(ingredient.hashValue, ingredient2.hashValue)
+        //Ensure that the hash value of the third ingredient is different
+        XCTAssertNotEqual(ingredient.hashValue, ingredient3.hashValue)
         
         //The ingredient2 should be contained in a set if ingredient is in the set
         var ingredientSet = Set<Ingredient>()
         ingredientSet.insert(ingredient)
         XCTAssertTrue(ingredientSet.contains(ingredient2))
+        
     }
     
     //Test Identifiable Conformance
     func testIngredientIdentifiable() {
         let ingredient = Ingredient(name: "Baking Flour", measurement: "113 grams / 0.5 cups")
         let ingredient2 = Ingredient(name: "Baking Flour", measurement: "1 metric ton")
-        XCTAssertEqual(ingredient.id, "baking_flour")
-        XCTAssertEqual(ingredient2.id, "baking_flour")
-        XCTAssertEqual(ingredient.id, ingredient2.id)
+        XCTAssertEqual(ingredient.id, "baking_flour113_grams_/_0.5_cups")
+        XCTAssertEqual(ingredient2.id, "baking_flour1_metric_ton")
+        XCTAssertNotEqual(ingredient.id, ingredient2.id)
     }
 
 }
