@@ -10,58 +10,23 @@ import Kingfisher
 import Vision
 import VideoToolbox
 
-struct SegmentationImageModifier: ImageModifier {
-    
-    
-    
-    func modify(_ image: Kingfisher.KFCrossPlatformImage) -> Kingfisher.KFCrossPlatformImage {
-        if #available(iOS 17.0, *){
-            return segmentImage(image)
-        }else{
-            return image
-        }
-    }
-    
-    @available(iOS 17.0, *)
-    func segmentImage(_ image: Kingfisher.KFCrossPlatformImage) -> Kingfisher.KFCrossPlatformImage {
-        
-        guard let cgImage = image.cgImage else { print("Couldn't get cgimage") ; return image }
-        let ciImage = CIImage(cgImage: cgImage)
-        let handler = VNImageRequestHandler(ciImage: ciImage)
-        let request = VNGenerateForegroundInstanceMaskRequest()
-        
-        do {
-            try handler.perform([request])
-            
-            guard let result = request.results?.first else { return image }
-            let segmentationBuffer = try result.generateMaskedImage(ofInstances: result.allInstances, from: handler, croppedToInstancesExtent: true)
-            var cgImage: CGImage?
-                VTCreateCGImageFromCVPixelBuffer(segmentationBuffer, options: nil, imageOut: &cgImage)
-            guard let cgImage else { return image }
-            return KFCrossPlatformImage(cgImage: cgImage)
-        } catch {
-            print(error)
-            return image
-        }
-    }
-    
-}
-
-
 struct MealDetailView: View{
     
     //Binded Meal that contains the information for the view
     @Binding var meal: Meal
     //Horizontal Size Class
     @Environment(\.horizontalSizeClass) var sizeClass
+    //View state
+    @State private var viewState: MealDetailViewState = .ingredients
     
     var body: some View{
+        
         GeometryReader{ geo in
-            
             ZStack(alignment: .top) {
-                
+                //MARK: Image -
                 if let imgURL = meal.thumbnailURL{
                     ZStack{
+                        //Background Image
                         KFImage(URL(string: imgURL))
                             .resizable()
                             .placeholder({ prog in
@@ -74,6 +39,7 @@ struct MealDetailView: View{
                             .scaledToFill()
                             .frame(width: geo.size.width)
                         
+                        //Segmented Cutout Overlay of Image Subject
                         KFImage(URL(string: imgURL))
                             .resizable()
                             .placeholder({ prog in
@@ -103,31 +69,55 @@ struct MealDetailView: View{
                         .shadow(color: .black.opacity(0.12), radius: 6, x: 3, y: 5)
                 }
                 
+                //MARK: Scroll View & Text -
                 ScrollView(.vertical) {
                     VStack(spacing: 0){
                         
                         Spacer()
                             .frame(height: geo.size.height * (sizeClass == .regular ? 0.4 : 0.3) - 20)
                         
-                        VStack(spacing: 15){
-                            Text(meal.name)
-                                .foregroundStyle(Color.primaryText)
-                                .font(.dmSans(size: 24, style: .title, weight: .bold))
+                        VStack(alignment: .leading, spacing: 15){
                             
-                            VStack(spacing: 10){
-                                ForEach(meal.ingredients ?? []){ ingredient in
-                                    Text(ingredient.name)
-                                        .headline()
+                            //Title and Selector
+                            VStack(alignment: .leading, spacing: 5){
+                                Text(meal.name)
+                                    .foregroundStyle(Color.primaryText)
+                                    .font(.dmSans(size: 24, style: .title, weight: .bold))
+                                
+                                //Ingredient - Instruction Selector
+                                ///Custom Binding that maps the View State Value to and from String
+                                let viewStateBinding: Binding<String> = .init(get: {self.viewState.rawValue}, set: {
+                                    if let value = MealDetailViewState(rawValue: $0){
+                                        self.viewState = value
+                                    }
+                                })
+                                SlidingPickerView(selection: viewStateBinding, values: MealDetailViewState.allCases.map{$0.rawValue})
+                            }
+                            .padding(.bottom, 10)
+                            
+                            switch self.viewState {
+                            case .ingredients:
+                                if let ingredients = meal.ingredients{
+                                    VStack(alignment: .leading, spacing: 10){
+                                        ForEach(ingredients, id: \.self){ ingredient in
+                                            IngredientCell(ingredient: ingredient)
+                                        }
+                                        
+                                        //Bottom Padding
+                                    }
+                                }else{
+                                    //No Ingredients Available
                                 }
+                            case .instructions:
+                                Text(meal.instructions ?? "")
+                                    .body()
                             }
                             
-                            Text(meal.instructions ?? "")
-                                .body()
-                            
                             Spacer()
+                                .frame(minHeight: 200)
                         }
                         .padding()
-                        .background(Material.ultraThin)
+                        .background(Material.thin)
                         .cornerRadius(10, corners: [.topLeft, .topRight])
                         .shadow(radius: 5, y: -1)
                         
@@ -139,6 +129,11 @@ struct MealDetailView: View{
         }
     }
     
+}
+
+//MARK: ViewState Enum for Meal Detail View -
+fileprivate enum MealDetailViewState: String, CaseIterable {
+    case ingredients, instructions
 }
 
 #Preview {
