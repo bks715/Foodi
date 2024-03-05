@@ -84,7 +84,7 @@ extension MealDBClient {
     }
     
     ///Categories of Meal types for the MealDB API
-    public enum Category: String {
+    public enum Category: String, CaseIterable {
         case dessert = "Dessert"
         
         ///The query item for the category.
@@ -98,7 +98,7 @@ extension MealDBClient {
     /// - endpoint: The endpoint to use.
     /// - parameters: The parameters to include in the URL.
     /// - Returns: A URL for the given endpoint and parameters.
-    private func url(for endpoint: Endpoints, parameters: [URLQueryItem] = []) throws -> URL {
+    internal func url(for endpoint: Endpoints, parameters: [URLQueryItem] = []) throws -> URL {
         let baseURL = "https://www.themealdb.com/api/json/v1/1/"
         var components = URLComponents(string: baseURL + endpoint.rawValue)!
         components.queryItems = parameters

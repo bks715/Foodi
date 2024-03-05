@@ -14,15 +14,20 @@ public class RecipeListViewModel: NSObject, ObservableObject {
     //MARK:  - Properties -
     ///MealDB API Client
     let client = MealDBClient()
-    
-    //Initialize the meals array with 20 empty meals
-    //This allows us to have a nice placeholder while waiting on API Data
-    @Published public var meals: [Meal]
+    ///Meals that are fetched from the API
+    private var meals: [Meal]
+    ///Meals that are displayed in the list (even when searching)
     @Published public var displayedMeals: [Meal]
+    ///Search text for filtering the meals
     @Published public var searchText: String = ""
+    ///State for the loading Indicator
     @Published public var isLoading: Bool = true
+    ///Error message that may be used for reporting error to user
+    @Published public var actionableError: ActionableError?
     
     override init(){
+        //Initialize the meals array with 20 empty meals
+        //This allows us to have a nice placeholder while waiting on API Data
         let meals = (0...50).map{ Meal(id: $0, name: Meal.placeholder.name) }
         self.meals = meals
         self.displayedMeals = meals
@@ -34,14 +39,26 @@ public class RecipeListViewModel: NSObject, ObservableObject {
             await self.setIsLoading(true)
             let meals = try await client.fetchMeals(forCategory: .dessert)
             //Update the meals array with the meals from the API
+            let _ = try? await client.url(for: .list)
             await MainActor.run{
                 self.meals = meals.sorted(by: {$0.name < $1.name})
-                withAnimation(.bouncy){ self.displayedMeals = self.meals }
+                withAnimation(.bouncy){
+                    self.displayedMeals = self.meals
+                    self.isLoading = false
+                }
             }
-            await self.setIsLoading(false)
         }catch{
             print(error)
-            await self.setIsLoading(false)
+            await MainActor.run{
+                withAnimation{
+                    self.actionableError = ActionableError("We're Having Trouble Fetching Recipes", message: error.localizedDescription, action: {
+                        Task{
+                            await self.fetchDessertList()
+                        }
+                    })
+                    self.isLoading = false
+                }
+            }
         }
     }
     
@@ -58,6 +75,15 @@ public class RecipeListViewModel: NSObject, ObservableObject {
             }
         }catch{
             print(error)
+            await MainActor.run{
+                withAnimation{
+                    self.actionableError = ActionableError("We're having Trouble Getting Details for \(meal.name.capitalized)", message: error.localizedDescription, action: {
+                        Task{
+                            await self.fetchDessertDetails(for: meal)
+                        }
+                    })
+                }
+            }
         }
     }
     
@@ -110,6 +136,7 @@ struct RecipeListView: View {
                         ForEach(viewModel.displayedMeals){ meal in
                             NavigationLink(destination: {
                                 MealDetailView(meal: .constant(meal))
+                                    .navigationBarBackButtonHidden()
                                     .task{
                                         print("I am fetching meal details for \(meal.name)")
                                         await self.viewModel.fetchDessertDetails(for: meal)
@@ -138,8 +165,8 @@ struct RecipeListView: View {
                             ForEach(viewModel.displayedMeals){ meal in
                                 NavigationLink(destination: {
                                     MealDetailView(meal: .constant(meal))
+                                        .navigationBarBackButtonHidden()
                                         .task{
-                                            print("I am fetching meal details for \(meal.name)")
                                             await self.viewModel.fetchDessertDetails(for: meal)
                                         }
                                 }, label: {
@@ -165,6 +192,13 @@ struct RecipeListView: View {
             }
             .background(Color.white1)
         }
+        //Alert for Displaying Possible Actionable Errors
+        .alert(viewModel.actionableError?.title ?? "", isPresented: .init(get: {viewModel.actionableError != nil}, set: { if !$0{ viewModel.actionableError = nil} }), actions: {
+            Button("Ok", role: .cancel, action: {})
+            if let action = viewModel.actionableError?.action{
+                Button("Try Again", action: action)
+            }
+        }, message: { Text(viewModel.actionableError?.message ?? "")})
         .navigationViewStyle(.stack)
         .onPreferenceChange(SizePreferenceKey.self) { size in
             if let size = size {

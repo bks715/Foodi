@@ -7,9 +7,10 @@
 
 import SwiftUI
 import Kingfisher
-import Vision
-import VideoToolbox
 
+///A SwiftUI View that displays the details of a recipe including its ingredients and instructions for preparation.
+///- Parameters:
+///- meal: The meal to display the details for
 struct MealDetailView: View{
     
     //Binded Meal that contains the information for the view
@@ -18,6 +19,8 @@ struct MealDetailView: View{
     @Environment(\.horizontalSizeClass) var sizeClass
     //View state
     @State private var viewState: MealDetailViewState = .ingredients
+    //Dismiss Action
+    @Environment(\.dismiss) var dismiss
     
     var body: some View{
         
@@ -80,7 +83,7 @@ struct MealDetailView: View{
                             
                             //Title and Selector
                             VStack(alignment: .leading, spacing: 5){
-                                Text(meal.name)
+                                Text(meal.name.capitalized)
                                     .foregroundStyle(Color.primaryText)
                                     .font(.dmSans(size: 24, style: .title, weight: .bold))
                                 
@@ -92,9 +95,11 @@ struct MealDetailView: View{
                                     }
                                 })
                                 SlidingPickerView(selection: viewStateBinding, values: MealDetailViewState.allCases.map{$0.rawValue})
+                                    .accessibilityLabel(Text("Select Ingredients or Instructions"))
                             }
                             .padding(.bottom, 10)
                             
+                            //Ingredients or Instructions
                             switch self.viewState {
                             case .ingredients:
                                 if let ingredients = meal.ingredients{
@@ -107,10 +112,17 @@ struct MealDetailView: View{
                                     }
                                 }else{
                                     //No Ingredients Available
+                                    Text("No Ingredients Available")
+                                        .foregroundStyle(Color.primaryText)
+                                        .body()
+                                        .frame(width: geo.size.width-30, height: geo.size.height*0.4)
                                 }
                             case .instructions:
-                                Text(meal.instructions ?? "")
+                                Text(meal.instructions ?? "Instructions Not Available")
                                     .body()
+                                    .lineSpacing(10)
+                                    .textSelection(.enabled)
+                                    .foregroundStyle(Color.primaryText)
                             }
                             
                             Spacer()
@@ -125,7 +137,23 @@ struct MealDetailView: View{
                     
                 }
                 .frame(width: geo.size.width, height: geo.size.height)
-            }
+                
+                //MARK: Back Button -
+                HStack(alignment: .top, content: {
+                    Button(action: { withAnimation{ self.dismiss()} }, label: {
+                        Image(systemName: "chevron.left")
+                            .font(.system(size: 24, weight: .bold))
+                            .foregroundColor(Color.primaryText)
+                            .padding(10)
+                            .background(Material.thin)
+                            .clipShape(Circle())
+                            .shadow(radius: 5, y: 1)
+                    })
+                    Spacer()
+                })
+                .padding(.horizontal)
+                
+            }//End z Stack
         }
     }
     
@@ -139,3 +167,4 @@ fileprivate enum MealDetailViewState: String, CaseIterable {
 #Preview {
     MealDetailView(meal: .constant(.mockMeal))
 }
+
