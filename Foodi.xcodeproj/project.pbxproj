@@ -649,16 +649,16 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Alamofire/Alamofire";
 			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 5.8.1;
+				kind = exactVersion;
+				version = 5.8.1;
 			};
 		};
 		6A8867992B8FF0E600518D4B /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/onevcat/Kingfisher";
 			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 7.11.0;
+				kind = exactVersion;
+				version = 7.11.0;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
