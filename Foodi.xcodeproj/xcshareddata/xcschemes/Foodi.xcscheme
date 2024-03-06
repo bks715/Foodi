@@ -6,6 +6,24 @@
       parallelizeBuildables = "YES"
       buildImplicitDependencies = "YES"
       buildArchitectures = "Automatic">
+      <PreActions>
+         <ExecutionAction
+            ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
+            <ActionContent
+               title = "Run Script"
+               scriptText = "# Type a script or drag a script file from your workspace to insert its path.&#10;# Check if Swift Package Manager dependencies need to be resolved&#10;if [ -f &quot;Package.resolved&quot; ]; then&#10;  echo &quot;Resolving Swift Package Manager dependencies...&quot;&#10;  xcodebuild -resolvePackageDependencies&#10;else&#10;  echo &quot;Package.resolved not found, skipping package resolution.&quot;&#10;fi&#10;">
+               <EnvironmentBuildable>
+                  <BuildableReference
+                     BuildableIdentifier = "primary"
+                     BlueprintIdentifier = "6A8867652B8FEDB800518D4B"
+                     BuildableName = "Foodi.app"
+                     BlueprintName = "Foodi"
+                     ReferencedContainer = "container:Foodi.xcodeproj">
+                  </BuildableReference>
+               </EnvironmentBuildable>
+            </ActionContent>
+         </ExecutionAction>
+      </PreActions>
       <BuildActionEntries>
          <BuildActionEntry
             buildForTesting = "YES"
